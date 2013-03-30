@@ -1,0 +1,27 @@
+{
+    "name": "selrahcd/tokenprotectedactions",
+    "description": "",
+    "authors": [
+        {
+            "name": "SelrahcD",
+            "email": "c.desneuf@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x",
+        "illuminate/database": "4.0.x"
+    },
+    "require-dev": {
+        "mockery/mockery": "0.7.2"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "SelrahcD\\TokenProtectedActions": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
