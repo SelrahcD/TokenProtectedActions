@@ -25,7 +25,7 @@ class ProtectedAction {
 	 */
 	public function __construct($actionId, TokenRepositoryInterface $repository)
 	{
-		$this->actionId = $actionId;
+		$this->actionId   = $actionId;
 		$this->repository = $repository;
 	}
 
