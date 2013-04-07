@@ -29,11 +29,25 @@ class ProtectedAction {
 		$this->repository = $repository;
 	}
 
+	/**
+	 * Get a token for user
+	 * 
+	 * @param  TokenProtectedUserInterface $user
+	 * @return string
+	 */
 	public function getToken(TokenProtectedUserInterface $user)
 	{
 		return $this->repository->create($user, $this->actionId);
 	}
 
+	/**
+	 * Execute the callback if a valid token is provided
+	 * 
+	 * @param  TokenProtectedUserInterface $user     
+	 * @param  string                      $token    
+	 * @param  Closure                     $callback 
+	 * @return mixed                       
+	 */
 	public function execute(TokenProtectedUserInterface $user, $token, Closure $callback)
 	{
 		if(!$this->repository->exists($user, $token, $this->actionId))

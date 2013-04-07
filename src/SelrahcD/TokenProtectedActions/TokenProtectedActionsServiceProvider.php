@@ -18,7 +18,7 @@ class TokenProtectedActionsServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('selrahc-d/token-protected-actions');
+		$this->package('selrahcd/tokenprotectedactions');
 	}
 
 	/**
@@ -28,7 +28,7 @@ class TokenProtectedActionsServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+		$this->registerRepository();
 	}
 
 	/**
@@ -38,7 +38,20 @@ class TokenProtectedActionsServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+		return array('protectedAction.repository');
+	}
+
+
+	protected function registerRepository()
+	{
+		$this->app['protectedAction.token.repository'] = $this->app->share(function($app)
+		{
+			$connection = $app['db']->connection();
+
+			$key = $app['config']['app.key'];
+
+			return new DatabaseTokenRepository($connection, 'action_tokens', $key, 259200);
+		});
 	}
 
 }

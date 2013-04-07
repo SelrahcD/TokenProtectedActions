@@ -58,7 +58,6 @@ class DatabaseTokenRepository implements TokenRepositoryInterface {
 	public function create(TokenProtectedUserInterface $user, $action)
 	{
 		$token = $this->createNewToken();
-
 		$this->getTable()->insert($this->getPayload($user->getId(), $action, $token));
 
 		return $token;
